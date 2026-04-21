@@ -40,7 +40,7 @@ Now we’re at the last step: configuration. UPU uses the concept of “channels
 
 A common rule: if you don’t understand a setting, keep its default value. UPU offers many ways to configure and customize nearly everything, but as mentioned above, trying to understand all options at once is a trap. It quickly becomes confusing. Instead, we suggest making update checks work first, then exploring advanced options gradually with the help of the docs—and **change one thing at a time**.
 
-You can configure UPU with any text editor you like. If you don’t already have one, we recommend [Visual Studio Code](https://code.visualstudio.com/). We explain configuration in depth in the [Configuration](/en/core/config/index) section. If UPU runs into severe errors during setup or stops working entirely and you want to reset configs, simply delete the config files and restart the server—UPU will regenerate defaults. Before doing that, make sure important data is backed up.
+You can configure UPU with any text editor you like. If you don’t already have one, we recommend [Visual Studio Code](https://code.visualstudio.com/). We explain configuration in depth in the [Configuration](/en/core/config/) section. If UPU runs into severe errors during setup or stops working entirely and you want to reset configs, simply delete the config files and restart the server—UPU will regenerate defaults. Before doing that, make sure important data is backed up.
 
 ## Run UPU
 
