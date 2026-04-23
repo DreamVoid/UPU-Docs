@@ -15,13 +15,12 @@
 通常，我们只需要花费几分钟进行下列操作：
 
 - 首先，从您喜爱的平台下载 UPU 的 Jar 插件文件：
-    - GitHub Releases
-    - Modrinth
-    - Hangar
-    - SpigotMC
+  - [Modrinth](https://modrinth.com/plugin/upu/versions)
+  - [GitHub Releases](https://github.com/DreamVoid/UniversalPluginUpdater/releases)
+  - [Hangar](https://hangar.papermc.io/DreamVoid/UniversalPluginUpdater)
 - 然后，将 Jar 文件放置在服务端的插件文件夹（通常是 `plugins`）。
 - 接下来，启动一次服务端，然后关闭。这样 UPU 就会释放一些基础文件。
-- 然后，配置 UPU。
+- 然后，[配置 UPU](core/config/).。
 - 最后，启动服务端并开始使用 ASF。
 
 一些步骤是不言自明的，其他步骤则需要您稍加注意。 别担心，我们会全程帮助您。

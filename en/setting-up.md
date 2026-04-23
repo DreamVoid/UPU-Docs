@@ -15,13 +15,12 @@ That’s the big picture. Let’s get started.
 Usually, this only takes a few minutes:
 
 - First, download the UPU JAR file from your preferred platform:
-  - GitHub Releases
-  - Modrinth
-  - Hangar
-  - SpigotMC
+  - [Modrinth](https://modrinth.com/plugin/upu/versions)
+  - [GitHub Releases](https://github.com/DreamVoid/UniversalPluginUpdater/releases)
+  - [Hangar](https://hangar.papermc.io/DreamVoid/UniversalPluginUpdater)
 - Then place the JAR file in your server’s plugin folder (usually `plugins`).
 - Next, start the server once, then stop it. This lets UPU generate initial files.
-- Then configure UPU.
+- Then [configure UPU](core/config/).
 - Finally, start the server and begin using UPU.
 
 Some steps are self-explanatory, while others need extra attention. Don’t worry—we’ll walk you through all of it.
