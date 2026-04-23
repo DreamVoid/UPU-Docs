@@ -2,17 +2,17 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "UPU 帮助手册",
   cleanUrls: true,
-  description: "有关 UniversalPluginUpdater 的所有东西都在这里",
 
   locales: {
     root: {
       label: '简体中文',
       lang: 'zh-Hans',
+      title: "UPU 帮助手册",
+      description: "有关 UniversalPluginUpdater 的所有东西都在这里",
       themeConfig: {
         nav: [
-          { text: '文档', link: '/' },
+          { text: '文档', link: '/', activeMatch: '/' },
         ],
 
         sidebar: [
@@ -58,9 +58,11 @@ export default defineConfig({
     en: {
       label: 'English',
       lang: 'en',
+      title: "UPU Docs",
+      description: "All things about UniversalPluginUpdater are here",
       themeConfig: {
         nav: [
-          { text: 'Docs', link: '/en/' },
+          { text: 'Docs', link: '/en/', activeMatch: '/' },
         ],
 
         sidebar: [
