@@ -110,11 +110,11 @@ There are 2 available `config` attributes:
 - `resource`, a `String`;
 - `proxy-download`, a `boolean`, default value `false`.
 
-## `resource`
+### `resource`
 
 `resource` represents the resource ID on SpigotMC. For example, if the resource page for ViaVersion is `https://www.spigotmc.org/resources/viaversion.19254/`, then the resource ID is the last string of numbers `19254`.
 
-## `proxy-download`
+### `proxy-download`
 
 `proxy-download` indicates whether to use Spiget for proxy downloads. Due to SpigotMC's strict Cloudflare WAF rules, UPU can hardly download plugins directly from SpigotMC. Spiget provides valuable server resources for proxy downloads to the public and sets strict rate limits. Therefore, if UPU finds that a file to be downloaded has been downloaded locally before, it will not perform any integrity verification (nor can it), and will directly use the already downloaded file as the file to be used.
 
