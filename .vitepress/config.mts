@@ -53,6 +53,10 @@ export default defineConfig({
             ]
           }
         ],
+
+        editLink: {
+          text: '编辑此页面'
+        }
       },
     },
     en: {
@@ -108,6 +112,9 @@ export default defineConfig({
   },
 
   themeConfig: {
+    editLink: {
+      pattern: 'https://github.com/DreamVoid/UPU-Docs/edit/main/:path'
+    },
     // https://vitepress.dev/reference/default-theme-config
     socialLinks: [
       { icon: 'github', link: 'https://github.com/DreamVoid/UniversalPluginUpdater' }

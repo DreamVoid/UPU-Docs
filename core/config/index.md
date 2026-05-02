@@ -44,7 +44,7 @@ updater:
   plugin-list-mode: 1
 ```
 
-要了解对所有选项的解释，请查看 [config.yml](config.yml) 章节。
+要了解对所有选项的解释，请查看 [config.yml](./config.yml) 章节。
 
 ## 更新配置
 更新配置分为两类，一类是存放于 `global.json` 文件中的全局更新配置，还有一类是存放在数据文件夹下名为 `channels` 文件夹的若干个 `<PluginId>.json` 文件。它们的作用域不同，但它们的结构都是相同的，其结构如下：
@@ -53,46 +53,53 @@ updater:
 {
   "selectedChannel": null,
   "channels": [
-    {
-      "type": "modrinth",
-      "config": {
-        "projectId": null,
-        "featured": false
+      {
+          "type": "modrinth",
+          "config": {
+              "projectId": null,
+              "featured": false,
+              "version-key": "name",
+              "version-regex": null
+          }
+      },
+      {
+          "type": "url",
+          "config": {
+              "url": null
+          }
+      },
+      {
+          "type": "github",
+          "config": {
+              "repository": null,
+              "auth": null,
+              "accept": [
+                  "application/java-archive",
+                  "application/x-java-archive"
+              ],
+              "filter": null,
+              "version-key": "name",
+              "version-regex": null
+          }
+      },
+      {
+          "type": "hangar",
+          "config": {
+              "author": null,
+              "slugOrId": null,
+              "channel": null,
+              "platform": null
+          }
+      },
+      {
+          "type": "spigotmc",
+          "config": {
+              "resource": null,
+              "proxy-download": false
+          }
       }
-    },
-    {
-      "type": "url",
-      "config": {
-        "url": null
-      }
-    },
-    {
-      "type": "github",
-      "config": {
-        "repository": null,
-        "auth": null,
-        "accept": "application/java-archive",
-        "filter": null
-      }
-    },
-    {
-      "type": "hangar",
-      "config": {
-        "author": null,
-        "slugOrId": null,
-        "channel": null,
-        "platform": null
-      }
-    },
-    {
-      "type": "spigotmc",
-      "config": {
-        "resource": null,
-        "proxy-download": false
-      }
-    }
   ]
 }
 ```
 
-要了解对所有选项的解释，请查看 [global.json\/\<PluginId\>.json](channel.json) 章节。
+要了解对所有选项的解释，请查看 [global.json\/\<PluginId\>.json](./channel.json) 章节。

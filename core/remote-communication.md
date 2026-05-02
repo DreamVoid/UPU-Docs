@@ -2,7 +2,7 @@
 
 本章节描述 UPU 所包含的远程通信，以及进一步解释您如何改变其行为。 虽然我们不认为下文所述是恶意或者不需要的，我们在法律上也没有义务予以披露，但我们希望您能更好地理解程序功能，特别是在您的隐私和数据共享方面。
 
-## GitHub/Modrinth/Hangar/Spiget
+## 更新渠道
 
 UPU 与 [Modrinth API](https://api.modrinth.com/)/[GitHub API](https://api.github.com/)/[Hangar API](https://hangar.papermc.io/api/)/[Spiget](https://spiget.org/) 通信用于检查其他插件的更新。您可以设置全局更新配置文件和插件更新配置文件的 [`config`](/config/channel.json#channels) 属性影响 UPU 与这些服务的通信。
 

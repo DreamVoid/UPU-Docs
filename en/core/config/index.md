@@ -51,54 +51,57 @@ updater:
 For detailed explanation of every option, see the [config.yml](./config.yml) page.
 
 ## Update Configuration
-Update configuration has two categories:
-- Global update configuration in `global.json`
-- Per-plugin update configuration in `<PluginId>.json` files under the `channels` folder in the data directory
-
-They differ in scope but share the same structure:
+The update configurations fall into two categories: one is the global update configuration stored in the `global.json` file, and the other is several `<PluginId>.json` files stored in a folder named `channels` under the data folder. They have different scopes, but their structures are the same, as follows:
 
 ```json
 {
   "selectedChannel": null,
   "channels": [
-    {
-      "type": "modrinth",
-      "config": {
-        "projectId": null,
-        "featured": false
+      {
+          "type": "modrinth",
+          "config": {
+              "projectId": null,
+              "featured": false,
+              "version-key": "name",
+              "version-regex": null
+          }
+      },
+      {
+          "type": "url",
+          "config": {
+              "url": null
+          }
+      },
+      {
+          "type": "github",
+          "config": {
+              "repository": null,
+              "auth": null,
+              "accept": [
+                  "application/java-archive",
+                  "application/x-java-archive"
+              ],
+              "filter": null,
+              "version-key": "name",
+              "version-regex": null
+          }
+      },
+      {
+          "type": "hangar",
+          "config": {
+              "author": null,
+              "slugOrId": null,
+              "channel": null,
+              "platform": null
+          }
+      },
+      {
+          "type": "spigotmc",
+          "config": {
+              "resource": null,
+              "proxy-download": false
+          }
       }
-    },
-    {
-      "type": "url",
-      "config": {
-        "url": null
-      }
-    },
-    {
-      "type": "github",
-      "config": {
-        "repository": null,
-        "auth": null,
-        "accept": "application/java-archive",
-        "filter": null
-      }
-    },
-    {
-      "type": "hangar",
-      "config": {
-        "author": null,
-        "slugOrId": null,
-        "channel": null,
-        "platform": null
-      }
-    },
-    {
-      "type": "spigotmc",
-      "config": {
-        "resource": null,
-        "proxy-download": false
-      }
-    }
   ]
 }
 ```

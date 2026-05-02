@@ -1,5 +1,5 @@
 # 首页
-欢迎阅读 UniversalPluginUpdater 帮助手册！您可以点击右上角的地球图标来更改页面语言。
+欢迎阅读 UniversalPluginUpdater 帮助手册！您可以点击右上角的翻译图标来更改页面语言。
 
 UniversalPluginUpdater，或简称 UPU，是一款强大的 Minecraft 服务端插件，允许您使用类似 APT 的命令快速检查现有插件的更新，并直接安装所有更新。
 

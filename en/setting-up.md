@@ -20,7 +20,7 @@ Usually, this only takes a few minutes:
   - [Hangar](https://hangar.papermc.io/DreamVoid/UniversalPluginUpdater)
 - Then place the JAR file in your server’s plugin folder (usually `plugins`).
 - Next, start the server once, then stop it. This lets UPU generate initial files.
-- Then [configure UPU](core/config/).
+- Then [configure UPU](./core/config/).
 - Finally, start the server and begin using UPU.
 
 Some steps are self-explanatory, while others need extra attention. Don’t worry—we’ll walk you through all of it.
@@ -39,7 +39,7 @@ Now we’re at the last step: configuration. UPU uses the concept of “channels
 
 A common rule: if you don’t understand a setting, keep its default value. UPU offers many ways to configure and customize nearly everything, but as mentioned above, trying to understand all options at once is a trap. It quickly becomes confusing. Instead, we suggest making update checks work first, then exploring advanced options gradually with the help of the docs—and **change one thing at a time**.
 
-You can configure UPU with any text editor you like. If you don’t already have one, we recommend [Visual Studio Code](https://code.visualstudio.com/). We explain configuration in depth in the [Configuration](/en/core/config/) section. If UPU runs into severe errors during setup or stops working entirely and you want to reset configs, simply delete the config files and restart the server—UPU will regenerate defaults. Before doing that, make sure important data is backed up.
+You can configure UPU with any text editor you like. If you don’t already have one, we recommend [Visual Studio Code](https://code.visualstudio.com/). We explain configuration in depth in the [Configuration](./core/config/) section. If UPU runs into severe errors during setup or stops working entirely and you want to reset configs, simply delete the config files and restart the server—UPU will regenerate defaults. Before doing that, make sure important data is backed up.
 
 ## Run UPU
 
@@ -49,4 +49,4 @@ If you’re concerned about what UPU does next—especially what actions it perf
 
 If everything goes well, UPU should now be running correctly and printing a welcome message in your server output.
 
-You can now try UPU commands, such as `/upu update` to check updates and `/upu download` to download updates. All available commands are listed in the [Commands](/en/core/commands) section.
+You can now try UPU commands, such as `/upu update` to check updates and `/upu download` to download updates. All available commands are listed in the [Commands](./core/commands) section.

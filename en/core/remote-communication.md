@@ -2,9 +2,9 @@
 
 This section describes the remote communications used by UPU and explains how you can change their behavior. While we do not consider the communications below to be malicious or unnecessary—and we are not legally required to disclose them—we still want you to better understand program behavior, especially regarding privacy and data sharing.
 
-## GitHub/Modrinth/Hangar/Spiget
+## Update channels
 
-UPU communicates with the [Modrinth API](https://api.modrinth.com/), [GitHub API](https://api.github.com/), [Hangar API](https://hangar.papermc.io/api/), and [Spiget](https://spiget.org/) to check updates for other plugins. You can configure the [`config`](/en/core/config/channel.json#channels) property in both global update config and per-plugin update config to affect how UPU communicates with these services.
+UPU communicates with the [Modrinth API](https://api.modrinth.com/)/[GitHub API](https://api.github.com/)/[Hangar API](https://hangar.papermc.io/api/)/[Spiget](https://spiget.org/) to check updates for other plugins. You can configure the [`config`](/en/core/config/channel.json#channels) property in both global update config and per-plugin update config to affect how UPU communicates with these services.
 
 **This communication is internal HTTP communication performed by UPU.** UPU sends an HTTP User-Agent containing its own version, OS type, and Java version.
 

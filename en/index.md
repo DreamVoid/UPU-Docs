@@ -1,5 +1,5 @@
 # Home
-Welcome to the UniversalPluginUpdater documentation! You can click the globe icon in the top-right corner to switch the page language.
+Welcome to the UniversalPluginUpdater documentation! You can click the translation icon in the top-right corner to switch the page language.
 
 UniversalPluginUpdater, or UPU for short, is a powerful Minecraft server plugin that lets you quickly check updates for existing plugins with APT-like commands, and install all updates directly.
 
