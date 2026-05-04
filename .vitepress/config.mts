@@ -13,7 +13,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '主页', link: 'https://upu.dreamvoid.me', target: '_self'},
-          { text: '文档', link: '/', activeMatch: '/', target: '_self'},
+          { text: '文档', link: '/', activeMatch: '/'},
         ],
 
         sidebar: [
@@ -68,7 +68,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Home', link: 'https://upu.dreamvoid.me/en/', target: '_self'},
-          { text: 'Docs', link: '/en/', activeMatch: '/', target: '_self' },
+          { text: 'Docs', link: '/en/', activeMatch: '/' },
         ],
 
         sidebar: [
