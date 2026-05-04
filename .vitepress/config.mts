@@ -12,8 +12,8 @@ export default defineConfig({
       description: "有关 UniversalPluginUpdater 的所有东西都在这里",
       themeConfig: {
         nav: [
-          { text: '主页', link: 'https://upu.dreamvoid.me' },
-          { text: '文档', link: '/', activeMatch: '/' },
+          { text: '主页', link: 'https://upu.dreamvoid.me', target: '_self'},
+          { text: '文档', link: '/', activeMatch: '/', target: '_self'},
         ],
 
         sidebar: [
@@ -67,8 +67,8 @@ export default defineConfig({
       description: "All things about UniversalPluginUpdater are here",
       themeConfig: {
         nav: [
-          { text: 'Home', link: 'https://upu.dreamvoid.me' },
-          { text: 'Docs', link: '/en/', activeMatch: '/' },
+          { text: 'Home', link: 'https://upu.dreamvoid.me', target: '_self'},
+          { text: 'Docs', link: '/en/', activeMatch: '/', target: '_self' },
         ],
 
         sidebar: [
