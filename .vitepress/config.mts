@@ -67,7 +67,7 @@ export default defineConfig({
       description: "All things about UniversalPluginUpdater are here",
       themeConfig: {
         nav: [
-          { text: 'Home', link: 'https://upu.dreamvoid.me', target: '_self'},
+          { text: 'Home', link: 'https://upu.dreamvoid.me/en/', target: '_self'},
           { text: 'Docs', link: '/en/', activeMatch: '/', target: '_self' },
         ],
 
