@@ -97,4 +97,4 @@ Disallow: /
 User-agent: SenutoBot
 Disallow: /
 
-Sitemap: https://docs.upu.dreamvoid.me/sitemaps.xml
+Sitemap: https://docs.upu.dreamvoid.me/sitemap.xml
