@@ -17,7 +17,7 @@ UPU 支持各种命令，用来控制插件自身和更新检查行为。
 
 | 命令 | 权限 | 描述 |
 | ---- | ---- | ---- |
-| `upu update` | `universal.command.update` | 更新可用插件列表 |
+| `upu update [--version <MC版本列表>]` | `universal.command.update` | 更新可用插件列表<br>提供 `--version` 参数将使用指定的 Minecraft 版本检查更新，多个版本以逗号分隔 |
 | `upu list [--upgradable]` | `universal.command.list` | 列出可用插件<br>提供 `--upgradable` 参数将仅列出可升级的插件 |
 | `upu download [插件ID...]` | `universal.command.download` | 通过 下载 来下载现有插件的更新版本<br>提供若干插件 ID 作为参数将仅下载这些插件 |
 | `upu upgrade [--now\|插件ID...]` | `universal.command.upgrade` | 通过 下载/安装 来升级现有插件到更新版本<br>提供若干插件 ID 作为参数将仅升级这些插件<br>提供 `--now` 参数将指示 UPU 立刻执行升级操作 |

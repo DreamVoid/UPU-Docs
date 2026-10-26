@@ -28,6 +28,8 @@ In most cases you don’t need to care about this (especially for proxy platform
 
 If this property is `null`, UPU tries to detect supported versions from the server. If it is an empty list, it means Minecraft version should be ignored, and UPU will not send version info to remote services. Unless you have a reason to edit this property, you should leave it as the default value.
 
+When using `/upu update --version <mcVersion...>`, the specified version(s) take precedence for that check and this property is not read.
+
 ## `platform.loaders`
 
 A `List<String>` with default `null`. Defines loaders supported by the current server.

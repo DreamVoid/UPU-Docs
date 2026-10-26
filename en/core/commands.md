@@ -16,7 +16,7 @@ However, we recommend always using the console, because some important details a
 
 | Command | Permission | Description |
 | ---- | ---- | ---- |
-| `upu update` | `universal.command.update` | Refresh available plugin update list |
+| `upu update [--version <mcVersion...>]` | `universal.command.update` | Refresh available plugin update list<br>Use `--version` to check against a specific Minecraft version; separate multiple versions with commas |
 | `upu list [--upgradable]` | `universal.command.list` | List available plugins<br>Use `--upgradable` to list only upgradable plugins |
 | `upu download [pluginId...]` | `universal.command.download` | Download newer versions of existing plugins<br>Provide plugin IDs to download only those plugins |
 | `upu upgrade [--now\|pluginId...]` | `universal.command.upgrade` | Upgrade existing plugins by downloading/installing newer versions<br>Provide plugin IDs to upgrade only those plugins<br>Use `--now` to tell UPU to execute upgrade immediately |
