@@ -22,11 +22,12 @@
 
 ## `"type": "modrinth"`
 
-Modrinth 渠道可用的 `config` 属性有 4 个：
+Modrinth 渠道可用的 `config` 属性有 5 个：
 - `projectId`，类型为 `String`；
 - `featured`，类型为 `boolean`，默认值为 `false`；
 - `version-key`，类型为 `String`，默认值为 `"name"`；
-- `version-regex`，类型为 `String`，默认值为 `null`。
+- `version-regex`，类型为 `String`，默认值为 `null`；
+- `version-type`，类型为 `List<String>`，默认值为 `["release"]`。
 
 ### `projectId`
 
@@ -45,6 +46,10 @@ Modrinth 渠道可用的 `config` 属性有 4 个：
 ### `version-regex`
 
 `version-regex` 代表 UPU 从 Modrinth API 返回的信息中提取新版本的版本名所用的正则表达式。默认情况下，UPU 在处理版本名时会去除前导 “v”、去除第一个连字符 “-” 之后的所有文本、去除第一个空格之后的所有文本，以得到标准的 SemVer 格式的版本名。如果默认行为无法正确提取出版本名，则您需要将此属性设置为能提取出版本名的正则表达式，否则 UPU 就会因为版本名问题而无法准确判断是否有更新。
+
+### `version-type`
+
+`version-type` 代表 UPU 从 Modrinth API 返回的信息中要使用的版本类型。Modrinth API 返回的信息中，`version-type` 由发布者设为 Release、Beta 或 Alpha，默认值代表 UPU 只会使用发布者设置为稳定的版本，也就是 Release。如果您愿意体验不太稳定的更新，则可以将对应类型的名称加入此数组。如果此处的值为 `null` 或空数组，UPU 则不会根据版本类型过滤版本列表。如果您不愿意承担不稳定的插件版本带来的风险，或者您不确定应该怎么做，则最好将这个选项保持为默认值。
 
 ## `"type": "github"`
 
