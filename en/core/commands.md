@@ -16,13 +16,13 @@ However, we recommend always using the console, because some important details a
 
 | Command | Permission | Description |
 | ---- | ---- | ---- |
-| `upu update [--version <mcVersion...>]` | `universal.command.update` | Refresh available plugin update list<br>Use `--version` to check against a specific Minecraft version; separate multiple versions with commas |
-| `upu list [--upgradable]` | `universal.command.list` | List available plugins<br>Use `--upgradable` to list only upgradable plugins |
-| `upu download [pluginId...]` | `universal.command.download` | Download newer versions of existing plugins<br>Provide plugin IDs to download only those plugins |
-| `upu upgrade [--now\|pluginId...]` | `universal.command.upgrade` | Upgrade existing plugins by downloading/installing newer versions<br>Provide plugin IDs to upgrade only those plugins<br>Use `--now` to tell UPU to execute upgrade immediately |
-| `upu repo update` | `universal.command.repo` | Check update configs from remote repositories |
-| `upu repo list [--available\|--updatable]` | `universal.command.repo` | View available update config list<br>Use `--available` to list all downloadable configs<br>Use `--updatable` to list local configs that are not up to date |
-| `upu repo get <all\|pluginId...>` | `universal.command.repo` | Fetch and save remote update configs<br>Use `all` to fetch all available configs<br>Provide plugin IDs to fetch only those plugins |
+| `upu update [--version <mcVersion...>]` | `universalpluginupdater.command.update` | Refresh available plugin update list<br>Use `--version` to check against a specific Minecraft version; separate multiple versions with commas |
+| `upu list [--upgradable]` | `universalpluginupdater.command.list` | List available plugins<br>Use `--upgradable` to list only upgradable plugins |
+| `upu download [pluginId...]` | `universalpluginupdater.command.download` | Download newer versions of existing plugins<br>Provide plugin IDs to download only those plugins |
+| `upu upgrade [--now\|pluginId...]` | `universalpluginupdater.command.upgrade` | Upgrade existing plugins by downloading/installing newer versions<br>Provide plugin IDs to upgrade only those plugins<br>Use `--now` to tell UPU to execute upgrade immediately |
+| `upu repo update` | `universalpluginupdater.command.repo` | Check update configs from remote repositories |
+| `upu repo list [--available\|--updatable]` | `universalpluginupdater.command.repo` | View available update config list<br>Use `--available` to list all downloadable configs<br>Use `--updatable` to list local configs that are not up to date |
+| `upu repo get <all\|pluginId...>` | `universalpluginupdater.command.repo` | Fetch and save remote update configs<br>Use `all` to fetch all available configs<br>Provide plugin IDs to fetch only those plugins |
 
 ## Notes
 

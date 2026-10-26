@@ -17,13 +17,13 @@ UPU 支持各种命令，用来控制插件自身和更新检查行为。
 
 | 命令 | 权限 | 描述 |
 | ---- | ---- | ---- |
-| `upu update [--version <MC版本列表>]` | `universal.command.update` | 更新可用插件列表<br>提供 `--version` 参数将使用指定的 Minecraft 版本检查更新，多个版本以逗号分隔 |
-| `upu list [--upgradable]` | `universal.command.list` | 列出可用插件<br>提供 `--upgradable` 参数将仅列出可升级的插件 |
-| `upu download [插件ID...]` | `universal.command.download` | 通过 下载 来下载现有插件的更新版本<br>提供若干插件 ID 作为参数将仅下载这些插件 |
-| `upu upgrade [--now\|插件ID...]` | `universal.command.upgrade` | 通过 下载/安装 来升级现有插件到更新版本<br>提供若干插件 ID 作为参数将仅升级这些插件<br>提供 `--now` 参数将指示 UPU 立刻执行升级操作 |
-| `upu repo update` | `universal.command.repo` | 从远程仓库中检查更新配置 |
-| `upu repo list [--available\|--updatable]` | `universal.command.repo` | 查看可用更新配置列表<br>提供 `--available` 参数将列出所有可下载的更新配置<br>提供 `--updatable` 参数将列出本地存在但不是最新的更新配置 |
-| `upu repo get <all\|插件ID...>` | `universal.command.repo` | 获取并保存远程更新配置<br>提供 `all` 参数将获取所有可用更新配置<br>提供若干插件 ID 将仅获取这些插件的更新配置 |
+| `upu update [--version <MC版本列表>]` | `universalpluginupdater.command.update` | 更新可用插件列表<br>提供 `--version` 参数将使用指定的 Minecraft 版本检查更新，多个版本以逗号分隔 |
+| `upu list [--upgradable]` | `universalpluginupdater.command.list` | 列出可用插件<br>提供 `--upgradable` 参数将仅列出可升级的插件 |
+| `upu download [插件ID...]` | `universalpluginupdater.command.download` | 通过 下载 来下载现有插件的更新版本<br>提供若干插件 ID 作为参数将仅下载这些插件 |
+| `upu upgrade [--now\|插件ID...]` | `universalpluginupdater.command.upgrade` | 通过 下载/安装 来升级现有插件到更新版本<br>提供若干插件 ID 作为参数将仅升级这些插件<br>提供 `--now` 参数将指示 UPU 立刻执行升级操作 |
+| `upu repo update` | `universalpluginupdater.command.repo` | 从远程仓库中检查更新配置 |
+| `upu repo list [--available\|--updatable]` | `universalpluginupdater.command.repo` | 查看可用更新配置列表<br>提供 `--available` 参数将列出所有可下载的更新配置<br>提供 `--updatable` 参数将列出本地存在但不是最新的更新配置 |
+| `upu repo get <all\|插件ID...>` | `universalpluginupdater.command.repo` | 获取并保存远程更新配置<br>提供 `all` 参数将获取所有可用更新配置<br>提供若干插件 ID 将仅获取这些插件的更新配置 |
 
 ## 备注
 
