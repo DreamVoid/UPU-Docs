@@ -31,6 +31,7 @@ updater:
   strategy: native
   allow-upgrade-now: true
   filename: ${originName}
+  force-filename: false
   proxy:
     uri: ~
     username: ~
@@ -42,6 +43,10 @@ updater:
   plugin-list:
     - DEFAULT_MODE_IS_BLACKLIST
   plugin-list-mode: 1
+
+strategy:
+  native:
+    unload-before-upgrade: true
 ```
 
 要了解对所有选项的解释，请查看 [config.yml](./config.yml) 章节。
@@ -51,54 +56,57 @@ updater:
 
 ```json
 {
-  "selectedChannel": null,
-  "channels": [
-      {
-          "type": "modrinth",
-          "config": {
-              "projectId": null,
-              "featured": false,
-              "version-key": "name",
-              "version-regex": null
-          }
-      },
-      {
-          "type": "url",
-          "config": {
-              "url": null
-          }
-      },
-      {
-          "type": "github",
-          "config": {
-              "repository": null,
-              "auth": null,
-              "accept": [
-                  "application/java-archive",
-                  "application/x-java-archive"
-              ],
-              "filter": null,
-              "version-key": "name",
-              "version-regex": null
-          }
-      },
-      {
-          "type": "hangar",
-          "config": {
-              "author": null,
-              "slugOrId": null,
-              "channel": null,
-              "platform": null
-          }
-      },
-      {
-          "type": "spigotmc",
-          "config": {
-              "resource": null,
-              "proxy-download": false
-          }
-      }
-  ]
+    "selected-channel": null,
+    "channels": [
+        {
+            "type": "modrinth",
+            "config": {
+                "projectId": null,
+                "featured": false,
+                "version-key": "name",
+                "version-regex": null,
+                "version-type": [
+                    "release"
+                ]
+            }
+        },
+        {
+            "type": "url",
+            "config": {
+                "url": null
+            }
+        },
+        {
+            "type": "github",
+            "config": {
+                "repository": null,
+                "auth": null,
+                "accept": [
+                    "application/java-archive",
+                    "application/x-java-archive"
+                ],
+                "filter": null,
+                "version-key": "name",
+                "version-regex": null
+            }
+        },
+        {
+            "type": "hangar",
+            "config": {
+                "author": null,
+                "slugOrId": null,
+                "channel": null,
+                "platform": null
+            }
+        },
+        {
+            "type": "spigotmc",
+            "config": {
+                "resource": null,
+                "proxy-download": false
+            }
+        }
+    ]
 }
 ```
 

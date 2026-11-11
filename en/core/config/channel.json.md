@@ -6,11 +6,11 @@ If a property is missing in `<PluginId>.json`, UPU falls back to `global.json`. 
 
 For convenience, “default value” below refers to values defined in code, and examples are explained from the perspective of a single plugin.
 
-## `selectedChannel`
+## `selected-channel`
 
 A `String` with default `null`. As the name suggests, this property defines which channels UPU will prioritize for obtaining plugin updates. A plugin may be released on multiple channels; for example, ViaVersion is released on all our supported channels, while you might prefer to download files from Modrinth. In this case, you can set this property to `modrinth`, and UPU will prioritize checking for updates from Modrinth according to your instruction. If a default value specified or an invalid channel is specified, UPU will ignore this setting and check for updates in the order of the `channels` properties below.
 
-In addition to the optional value of `channels.type` (mentioned below), the `selectedChannel` value can also be set to `plugin` as the update channel if the plugin has registered a custom implementation of the update channel. In this case, UPU will execute the logic defined by the plugin author to check for updates. If `selectedChannel` is not specified, UPU will use this custom implementation as the first available update channel.
+In addition to the optional value of `channels.type` (mentioned below), the `selected-channel` value can also be set to `plugin` as the update channel if the plugin has registered a custom implementation of the update channel. In this case, UPU will execute the logic defined by the plugin author to check for updates. If `selected-channel` is not specified, UPU will use this custom implementation as the first available update channel.
 
 Unless you want to change the UPU's check channel for specific plugins or all plugins' updates, it's best to leave it as the default.
 

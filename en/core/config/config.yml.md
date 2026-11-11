@@ -126,3 +126,11 @@ Unless you have a reason to edit this property, you should leave it as the defau
 A `List<String>` (default empty list). Defines plugin component names used as blacklist/whitelist for auto-update behavior, depending on `plugin-list-mode`.
 
 Unless you have a reason to edit this property, you should leave it as the default value.
+
+## `strategy.native.unload-before-upgrade`
+
+A `boolean` with default `true`. Defines whether the "native" upgrade strategy should attempt to uninstall a plugin before upgrading it. It's intended to release any locks on the plugin files, allowing UPU to delete the old files and prevent them from being reloaded the next time the server starts.
+
+Some platforms (such as Velocity) do not support plugin unloading at runtime, making it impossible to safely remove old files and replace them with new ones in all scenarios. On Linux file systems, a filename is not synonymous with the file itself; rather, a file is uniquely identified by an inode, while the filename acts merely as a "pointer" to that inode within a directory. Consequently, deleting a filename does not affect a process that has already loaded the file (unless that process needs to re-access the file by its name). The "native" upgrade strategy in UPU leverages this characteristic, allowing new files to replace old ones even when the original files are in use—ensuring that the updated plugin files are loaded upon the server's next startup. However, not all operating systems behave like Linux; for instance, Microsoft Windows does not permit the deletion of a file while it is being accessed by another process.
+
+The default value will make the strategy always attempt an unloading operation, but it will invariably fail on platforms like Velocity that do not support plugin unloading. Therefore, if you are using an operating system and file system that allow for file deletion at runtime (as described earlier), but are running on a platform that does not support plugin unloading, you may set this property to `false` to prevents the upgrade strategy from performing redundant operations and suppresses unnecessary warnings. That said, we recommend using a safer upgrade strategy; UPU includes an alternative strategy called `applier`, which launches a separate process to safely upgrade plugins once the server has shut down.

@@ -4,7 +4,7 @@
 
 ## 更新渠道
 
-UPU 与 [Modrinth API](https://api.modrinth.com/)/[GitHub API](https://api.github.com/)/[Hangar API](https://hangar.papermc.io/api/)/[Spiget](https://spiget.org/) 通信用于检查其他插件的更新。您可以设置全局更新配置文件和插件更新配置文件的 [`config`](/config/channel.json#channels) 属性影响 UPU 与这些服务的通信。
+UPU 与 [Modrinth API](https://api.modrinth.com/)/[GitHub API](https://api.github.com/)/[Hangar API](https://hangar.papermc.io/api/)/[Spiget](https://spiget.org/) 通信用于检查其他插件的更新。您可以设置全局更新配置文件和插件更新配置文件的 [`config`](/core/config/channel.json#channels) 属性影响 UPU 与这些服务的通信。
 
 **这类通信属于 UPU 内部 HTTP 通信。**UPU 会将自身的版本、操作系统类型、Java 版本拼接为 User-Agent 字段与 HTTP 请求一起发送。
 
