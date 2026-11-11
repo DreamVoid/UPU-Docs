@@ -24,12 +24,13 @@ If a channel is defined in the configuration file, then the plugin must be able 
 
 ## `"type": "modrinth"`
 
-The Modrinth channel has 4 available `config` properties:
+The Modrinth channel has 5 available `config` properties:
 
 - `projectId`, a `String`;
 - `featured`, a `boolean`, default value `false`;
 - `version-key`, a `String`, default value `"name"`;
 - `version-regex`, a `String`, default value `null`.
+- `version-regex`, a `List<String>`, default value `["release"]`.
 
 ### `projectId`
 
@@ -48,6 +49,10 @@ The Modrinth channel has 4 available `config` properties:
 ### `version-regex`
 
 `version-regex` represents the regular expression used by UPU to extract the version name of the new version from the information returned by the Modrinth API. By default, UPU removes leading "v", all text after the first hyphen "-", and all text after the first space when processing the version name to obtain a standard SemVer format version name. If the default behavior cannot extract the version name correctly, you need to set this attribute to a regular expression that can extract the version name. Otherwise, UPU will be unable to accurately determine whether there is an update due to version name issues.
+
+### `version-type`
+
+`version-type` specifies which version types—as returned by the Modrinth API—UPU should include. In the Modrinth API, each version is categorized by its publisher as either "Release," "Beta," or "Alpha." By default, UPU only includes versions marked as "Release" (i.e., stable releases). If you are comfortable using less stable updates, you can add the corresponding type names to this array. If this value is set to `null` or an empty array, UPU will not filter the version list based on version type. If you prefer to avoid the risks associated with unstable plugin versions, or if you are unsure what to choose, it is best to keep this option at its default value.
 
 ## `"type": "github"`
 

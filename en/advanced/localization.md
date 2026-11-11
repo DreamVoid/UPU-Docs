@@ -14,7 +14,7 @@ If your chosen language is not listed in the language file directory yet, you ca
 
 If UPU already supports your language but does not recognize your specific locale code, you can create a file with extension `link`, whose content is another language code to link to. When UPU detects your locale code, it will automatically use the linked language file.
 
-You can start from the English language file `en.json`. If you are fluent in Simplified Chinese, `zh-Hans.json` is often an even better template because UPU is mainly developed in Simplified Chinese, and that text best reflects the original intent.
+You can start from the English language file `en-US.json`. If you are fluent in Simplified Chinese, `zh-Hans.json` is often an even better template because UPU is mainly developed in Simplified Chinese, and that text best reflects the original intent.
 
 We try hard to keep translations flexible, so many texts include runtime variables provided dynamically by UPU—these are numbers wrapped in braces, like {0}. This lets you adjust sentence structure naturally for your language instead of being forced into a rigid format. This is especially important for RTL (right-to-left) languages such as Hebrew.
 
