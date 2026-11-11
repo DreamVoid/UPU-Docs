@@ -49,7 +49,7 @@ export default defineConfig({
             text: '开发者',
             items: [
               { text: '🏗️ 编译', link: '/developer/compilation.md' },
-              { text: '🎴 自定义更新', link: '/more-coming' },
+              { text: '🎴 自定义更新', link: '/developer/custom-update.md' },
               { text: '🤝 贡献指南', link: '/more-coming' }
             ]
           }
@@ -104,7 +104,7 @@ export default defineConfig({
             text: 'Developer',
             items: [
               { text: '🏗️ Build', link: '/en/developer/compilation' },
-              { text: '🎴 Custom Updates', link: '/en/more-coming' },
+              { text: '🎴 Custom Updates', link: '/en/developer/custom-update.md' },
               { text: '🤝 Contribution Guide', link: '/en/more-coming' }
             ]
           }
