@@ -42,6 +42,7 @@ export default defineConfig({
           {
             text: '高级',
             items: [
+              { text: '⌨️ JVM 参数', link: '/advanced/jvm-parameters.md' },
               { text: '🌐 本地化', link: '/advanced/localization.md' },
             ]
           },
@@ -97,6 +98,7 @@ export default defineConfig({
           {
             text: 'Advanced',
             items: [
+              { text: '⌨️ JVM Parameters', link: '/en/advanced/jvm-parameters' },
               { text: '🌐 Localization', link: '/en/advanced/localization' },
             ]
           },
