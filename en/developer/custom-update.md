@@ -209,4 +209,73 @@ This section describes methods within the `AbstractPluginUpdate` class that were
 
 ## General Update Channel
 
-Coming soon...
+This approach is suitable for plugin distribution platforms that already have a user base and a collection of plugins, but are not yet supported by UPU. If the platform you use is not currently supported by UPU and you would like to contribute, this section is exactly what you need.
+
+At the core is the `AbstractUpdate` abstract class, located in the `me.dreamvoid.universalpluginupdater.update` package. In this same package, you can also find existing update channels already supported by UPU, such as Modrinth and Hangar. We will use these as examples to help you get started with writing the update-checking logic for a new channel.
+
+### Inheritance and Annotations
+
+All implementation classes for update channels must extend `AbstractUpdate` and declare their identifier using the `@UpdateChannel` annotation. For instance, the implementation for Modrinth is structured as follows:
+
+```java
+@UpdateChannel(id = "modrinth")
+public class ModrinthUpdate extends AbstractUpdate {
+    ...
+}
+```
+
+In this example, the logic class for the Modrinth update channel is named `ModrinthUpdate`. It extends `AbstractUpdate` and is decorated with the `@UpdateChannel` annotation, specifying an `id` of `"modrinth"`. The `@UpdateChannel` annotation is mandatory; UPU relies on the value provided in this annotation to locate the corresponding update configuration within `global.json` and `<PluginId>.json` files.
+
+### Constructor
+
+The constructor is used to receive the plugin ID and update configuration corresponding to an update channel instance. For example, the constructor for Hangar is as follows:
+
+```java
+public HangarUpdate(String pluginId, JsonObject config, Platform platform) {
+    super(pluginId, platform);
+    this.info = Utils.gson.fromJson(config, HangarChannelInfo.class);
+    if (this.info.author() == null || this.info.author().isEmpty() || this.info.slugOrId() == null || this.info.slugOrId().isEmpty()) {
+        throw new IllegalArgumentException("author, slugOrId 不存在或为空");
+    }
+}
+```
+
+In this constructor, the parameters include a `String` representing the plugin ID, a `JsonObject` containing the update configuration, and a platform object provided by UPU for server-side operations. You must pass the first and third parameters to the `AbstractUpdate` constructor via `super()`, and then process the update configuration provided by the second parameter.
+
+You may notice that the constructor for an update channel implementation differs from the constructor for `AbstractUpdate`. This is because a plugin distribution platform requires configuration, whereas an update process itself does not. If you're confused by this statement, let's take a ready-made example: In the first part of this page, when we introduced how to create a dedicated custom update channel for a plugin, we didn't use any configuration from a JSON file because we knew all the information about the plugin's custom updates and didn't need to rely on a configuration file to tell us that. We are currently designing an update channel that is universal for all plugins. It is impossible to use the exact same information to provide update checks for all plugins using this update channel. Otherwise, how can we distinguish which plugin has updates? Consequently, UPU provides a specialized invocation mechanism for these universal update channel implementations. Instead of using the 2-parameter constructor of `AbstractUpdate`, UPU utilizes the 3-parameter constructor of the update channel implementation. This ensures that the update configuration is correctly passed to the update channel object, resulting in a unique, well-defined instance for each plugin on that update channel.
+
+You can check the information for the `config` parameter. By default, this parameter contains a combined configuration of `global.json` and `<PluginId>.json`, but does not include possible default configurations. For non-existent configurations, it is usually represented as `null`. You can check if the configuration includes the identifier used to identify plugins on the plugin distribution platform or other necessary information. If you find that some necessary information is missing, you can throw an `IllegalArgumentException` in the constructor. UPU will consider the information of this update channel to be incomplete and will abandon the use of this update channel.
+
+### `checkUpdate` method, `getVersion` method, `download` method
+
+Similar to those used for plugin-specific update channels, these three methods must be implemented by every update channel implementation class. You can learn about the purpose of these methods in the first section of this page, which covers plugin-specific update channels. Here, we discuss best practices for creating a generic update channel implementation class.
+
+UPU provides a simple HTTP client that supports GET and POST requests, as well as file downloads. You can use the corresponding static methods through the `Http` inner class of the `Utils` class. We recommend that you always use the HTTP client provided by UPU to access the network, as it integrates a caching mechanism and better represents UPU during access, reducing the possibility that the plugin update platform will block UPU's network requests.
+
+A plugin distribution platform typically supports different servers and allows you to pass the platform you need through its API interface. You can use the `platform.getLoaders()` method to retrieve the plugin loaders supported by the current server environment. For example, if UPU is currently running on the Paper server, this method will return an array of `["bukkit","paper"]`, which you can then use the `String.join()` method or process according to the API requirements.
+
+Plugins may offer different versions tailored to specific Minecraft releases, and most distribution platform APIs allow you to filter plugin versions based on the Minecraft version. You can use `platform.getGameVersions()` to obtain a list of all Minecraft versions supported by the current server. If this method returns `null` or an empty array, it indicates that the server environment is not tied to a specific Minecraft version (common with proxy servers like Velocity), meaning you may select any available version of the plugin.
+
+### Registering Update Channel Implementation Classes
+
+If you have implemented a generic update channel within your plugin, you can register your implementation during the plugin's loading phase (the `onLoad` method on Bukkit, or the `ProxyInitializeEvent` event on Velocity) using the following code:
+
+```java
+import me.dreamvoid.universalpluginupdater.service.UpdateManager;
+
+......
+
+UpdateManager.registerChannel(YourClassName.class);
+```
+
+If you would like to contribute a generic update channel implementation for UPU, you can find the location where update channels are registered in the `LifeCycle` class, at around line 76:
+
+```java
+UpdateManager.registerChannel(URLUpdate.class);
+UpdateManager.registerChannel(ModrinthUpdate.class);
+UpdateManager.registerChannel(GitHubUpdate.class);
+UpdateManager.registerChannel(HangarUpdate.class);
+UpdateManager.registerChannel(SpigotMCUpdate.class);
+```
+
+Simply add the registration code after this code.

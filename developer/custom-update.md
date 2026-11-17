@@ -84,9 +84,9 @@ UpdateManager.registerChannel(new MyPluginUpdate());
 
 这个更新检查的实现不能说完全用不了，至少也算得上是粗糙无比，不过考虑到这只用于演示，姑且暂时忽略这些问题。接下来我们会探索这个更新检查实现的所有细节，帮助您编写真正完善的自定义更新。
 
-### 构造函数
+### 构造方法
 
-构造函数用于传递当前自定义更新类对应的是什么插件：
+构造方法用于传递当前自定义更新类对应的是什么插件：
 
 ```java
 protected MyPluginUpdate() {
@@ -96,7 +96,7 @@ protected MyPluginUpdate() {
 
 在本例中，我们直接通过 super 方法传递了 UPU 的插件 ID，我们建议您也这么做，因为这是“您的”插件的更新方式，您应该不会愿意让其他插件使用。当然，如果您开发了多个插件，并且这些插件检查更新时具有类似的逻辑，则可以保留形参并在实例化时传递插件 ID，我们会在后文提到如何获取插件 ID。
 
-通过构造函数传递的插件 ID 不区分大小写、不可修改，且将作为 UPU 匹配插件和自定义更新对象的依据，因此务必确保插件 ID 的正确性。
+通过构造方法传递的插件 ID 不区分大小写、不可修改，且将作为 UPU 匹配插件和自定义更新对象的依据，因此务必确保插件 ID 的正确性。
 
 ### `checkUpdate` 方法
 
@@ -209,4 +209,73 @@ UPU 并不关心您的自定义更新从哪里下载插件、如何下载，UPU 
 
 ## 通用更新渠道
 
-即将添加...
+这种方式适合已有一些用户和插件但 UPU 尚未支持的插件分发平台，如果 UPU 不支持您正在使用的插件分发平台，而您愿意为 UPU 提供帮助，这部分就是您需要的东西。
+
+核心是位于 `me.dreamvoid.universalpluginupdater.update` 包中的 `AbstractUpdate` 抽象类，在这个包中您还可以看到 UPU 已提供支持的一些更新渠道，例如 Modrinth 和 Hangar，我们将以一些现有的更新渠道作为例子，帮助您开始编写新渠道的更新检查逻辑。
+
+### 继承和注解
+
+所有更新渠道的实现类都需要继承 `AbstractUpdate`，并用注解 `@UpdateChannel` 声明其标识符。例如，Modrinth 的继承和注解如下所示：
+
+```java
+@UpdateChannel(id = "modrinth")
+public class ModrinthUpdate extends AbstractUpdate {
+    ...
+}
+```
+
+在这个例子中，我们将为 Modrinth 平台设计的更新渠道逻辑类命名为 `ModrinthUpdate`，继承了 `AbstractUpdate`，并在这个类上使用了 `id` 为 `modrinth` 的 `UpdateChannel` 注解。`UpdateChannel` 注解是必须的，UPU 依赖这个注解的值从 `global.json` 和 `<PluginId>.json` 文件中寻找对应的更新配置
+
+### 构造方法
+
+构造方法用于接收更新渠道实例对应的插件 ID 和更新配置。例如，Hangar 的构造方法如下：
+
+```java
+public HangarUpdate(String pluginId, JsonObject config, Platform platform) {
+    super(pluginId, platform);
+    this.info = Utils.gson.fromJson(config, HangarChannelInfo.class);
+    if (this.info.author() == null || this.info.author().isEmpty() || this.info.slugOrId() == null || this.info.slugOrId().isEmpty()) {
+        throw new IllegalArgumentException("author, slugOrId 不存在或为空");
+    }
+}
+```
+
+在这个构造方法中，形参分别为 `String` 类型的插件 ID、`JsonObject` 类型的更新配置，还有一个 UPU 提供的用于服务端操作的平台对象，我们需要将第一个参数和第三个参数通过 `super()` 方法传递给 `AbstractUpdate` 的构造方法，然后对第二个参数提供的更新配置进行处理。
+
+您可能会注意到更新渠道实现类的构造方法和 `AbstractUpdate` 的构造方法并不相同，这是因为插件分发平台需要配置，而更新本身不需要配置。如果您对这句话感到困惑，让我们举一个现成的例子：在本页的第一部分我们介绍为插件打造专用的自定义更新渠道时，并不会使用到任何来自 JSON 文件的配置，因为我们知道这个插件的自定义更新的所有信息，不需要依靠配置文件来告诉我们。而我们现在正在设计所有插件都通用的更新渠道，不可能使用完全相同的信息为所有使用这个更新渠道的插件提供更新检查，否则怎么区分哪个插件有更新呢？因此，UPU 在设计时为这一类通用更新渠道实现类提供了特殊的调用，UPU 不会直接使用 AbstractUpdate 的 2 参数构造方法，而是使用更新渠道实现类的 3 参数构造方法，让更新配置能够正常传递给更新渠道对象，使一个插件在一个更新渠道上有唯一确定的实例。
+
+您可以对 `config` 参数的信息进行检查。默认情况下，这个参数包含 `global.json` 和 `<PluginId>.json` 的合并配置，但并不包含可能的默认配置，对于不存在的配置，通常会表示为 `null`。您可以检查配置是否包含插件发布平台上用于标识插件的标识符或者其他必要的信息，如果您发现某些必要的信息缺失，可以在构造方法内抛出一个 `IllegalArgumentException`，UPU 会认为这个更新渠道的信息不完整，并放弃使用这个更新渠道。
+
+### `checkUpdate` 方法、`getVersion` 方法、`download` 方法
+
+与插件专用的更新渠道类似，这三个方法也是每一个更新渠道实现类必须实现的方法，您可以在本页第一部分介绍插件专用更新渠道的部分了解这三个方法的作用。在这里我们讨论制作一个通用更新渠道实现类的最佳实践。
+
+UPU 提供了一个简易的 HTTP 客户端，支持 GET、POST 两种请求方式，另外还支持下载文件。您可以通过 `Utils` 类的 `Http` 内部类使用对应的静态方法。我们建议您始终使用 UPU 提供的 HTTP 客户端访问网络，因为其集成了缓存机制，并在访问过程中更好的代表 UPU，减少插件更新平台屏蔽 UPU 的网络请求的可能性。
+
+一个插件发布平台通常支持不同服务端，并支持通过其 API 接口传递您需要的平台。您可以通过 `platform.getLoaders()` 方法获取当前服务端支持的插件加载器。例如，如果 UPU 当前运行在 Paper 服务端上，则此方法会返回 `["bukkit","paper"]` 数组，您可以使用 `String.join()` 方法或者根据 API 的要求处理这个数组。
+
+一个插件可能会对不同的 Minecraft 版本提供不同的插件版本，而绝大多数插件发布平台的 API 都支持按 Minecraft 版本筛选插件版本。您可以通过 `platform.getGameVersions()` 获取当前服务端支持的所有 Minecraft 版本列表，如果此方法返回 `null` 或空数组，代表当前服务端与 Minecraft 版本无关（通常为 Velocity 之类的代理服务端），可以选用任意版本的插件。
+
+### 注册更新渠道实现类
+
+如果您在自己的插件中实现了一个通用的更新渠道，您可以在您的插件的加载阶段（Bukkit 上是 `onLoad` 方法，Velocity 上是 `ProxyInitializeEvent` 事件）使用以下代码注册您的实现：
+
+```java
+import me.dreamvoid.universalpluginupdater.service.UpdateManager;
+
+......
+
+UpdateManager.registerChannel(类名.class);
+```
+
+如果您想为 UPU 贡献通用更新渠道实现，则您可以在 `LifeCycle` 类大约 76 行的地方找到注册更新渠道的地方：
+
+```java
+UpdateManager.registerChannel(URLUpdate.class);
+UpdateManager.registerChannel(ModrinthUpdate.class);
+UpdateManager.registerChannel(GitHubUpdate.class);
+UpdateManager.registerChannel(HangarUpdate.class);
+UpdateManager.registerChannel(SpigotMCUpdate.class);
+```
+
+将注册代码添加到这些代码之后即可。
