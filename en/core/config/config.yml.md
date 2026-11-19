@@ -44,9 +44,7 @@ If this property is `null` or empty, UPU attempts automatic loader detection. Un
 
 A `String` with default `"native"`. Defines how UPU installs newer plugin versions (“upgrade strategy”). UPU has some built-in upgrade strategies to help you safely upgrade old plugins on the server and replace them with new plugin files.
 
-Default value is a generic strategy: it tries to disable the running plugin, remove old files, move new files into plugin folder, then remind you to restart server.
-
-UPU also includes platform-specific strategies: `bukkit` (for Bukkit) and `velocity` (for Velocity). These are tuned for their own platforms and may work better there.
+Default value is a generic strategy: it tries to disable the running plugin, remove old files, move new files into plugin folder, then remind you to restart server. UPU includes a built-in strategy called `applier`, designed for the safe upgrading of plugins on platforms that do not support unloading them. Additionally, for the Bukkit platform, UPU provides a built-in upgrade strategy named `bukkit`. While these strategies are specific to their respective platforms, they offer a high degree of adaptation, ensuring optimal performance.
 
 If you wish to use a different upgrade strategy, or if the `native` upgrade strategy fails to function properly for some reason, you can configure this property as an identifier for another strategy. Furthermore, if other developers have provided alternative upgrade strategies, you can also use them.
 
