@@ -36,6 +36,7 @@ export default defineConfig({
                 ]
               },
               { text: '📢 命令', link: '/core/commands.md' },
+              { text: '⬆️ 升级策略', link: '/core/upgrade-strategy.md' },
               { text: '📡 远程通信', link: '/core/remote-communication.md' }
             ]
           },
@@ -92,6 +93,7 @@ export default defineConfig({
                 ]
               },
               { text: '📢 Commands', link: '/en/core/commands' },
+              { text: '⬆️ Upgrade Strategy', link: '/en/core/upgrade-strategy.md' },
               { text: '📡 Remote Communication', link: '/en/core/remote-communication' }
             ]
           },
